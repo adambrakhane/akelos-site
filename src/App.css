@@ -4552,6 +4552,11 @@ fieldset:disabled .btn {
     white-space: nowrap;
 }
 
+.navbar-brand img {
+    height: 100%;
+    max-height: 4rem;
+}
+
 .navbar-nav {
     display: flex;
     flex-direction: column;
@@ -11585,6 +11590,12 @@ body {
 
 .signup-section .form-signup textarea {
     margin-top: 30px;
+}
+
+.signup-section .g-recaptcha {
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
 }
 
 .contact-section {

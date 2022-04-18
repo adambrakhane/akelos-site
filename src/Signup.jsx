@@ -1,10 +1,20 @@
 import React from "react";
+import emailjs from "emailjs-com";
+import ReCaptchaV2 from "react-google-recaptcha";
+
+const RECAPTCHA_SITE_KEY = "6LckrH8fAAAAADmqeeiQycpWfhMrhKxjdgHm262_";
 
 export default function Signup() {
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [submitError, setSubmitError] = React.useState(null);
   const [submitSuccess, setSubmitSuccess] = React.useState(false);
+  const [token, setToken] = React.useState("");
+
+  const handleToken = (token) => {
+    console.log(token);
+    setToken(token);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +31,12 @@ export default function Signup() {
 
     console.log(email, message);
 
+    // Validate that the recaptcha token is done
+    if (token === "" || token === null) {
+      setSubmitError("Please complete the captcha.");
+      return;
+    }
+
     // Validate that email is set
     if (email === "") {
       setSubmitError("Please enter an email address");
@@ -33,8 +49,31 @@ export default function Signup() {
       return;
     }
 
-    // @todo - send email
-    setSubmitSuccess(true);
+    // Get recaptcha token then send the email
+
+    emailjs
+      .send(
+        "service_cl03vwo",
+        "template_mhq6ruj",
+        {
+          reply_to: email,
+          from: email,
+          message_html: message,
+          message_text: message,
+          "g-recaptcha-response": token,
+        },
+        "eLnJsEzEf-YxLE2yg"
+      )
+      .then(
+        (result) => {
+          setSubmitSuccess(true);
+        },
+        (error) => {
+          console.error(error.text);
+          console.error(error);
+          setSubmitError(error.text);
+        }
+      );
   };
 
   return (
@@ -72,6 +111,7 @@ export default function Signup() {
                   </button>
                 </div>
               </div>
+
               <div className="row input-group-newsletter">
                 <div className="col">
                   <textarea
@@ -83,6 +123,16 @@ export default function Signup() {
                     rows="5"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <ReCaptchaV2
+                    sitekey="6LckrH8fAAAAADmqeeiQycpWfhMrhKxjdgHm262_"
+                    onChange={handleToken}
+                    size="normal"
+                    className="g-recaptcha"
                   />
                 </div>
               </div>

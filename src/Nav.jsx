@@ -8,7 +8,7 @@ export default function Nav() {
     >
       <div className="container px-4 px-lg-5">
         <a className="navbar-brand" href="#page-top">
-          <img src="img/logo.png" height="100" />
+          <img src="img/logo.png" alt="Akelos" />
         </a>
         <button
           className="navbar-toggler navbar-toggler-right"

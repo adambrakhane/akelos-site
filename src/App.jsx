@@ -5,7 +5,6 @@ import Masthead from "./Masthead";
 import PrimaryContent from "./PrimaryContent";
 import Projects from "./Projects";
 import Signup from "./Signup";
-import Contact from "./Contact";
 import Footer from "./Footer";
 
 function App() {
