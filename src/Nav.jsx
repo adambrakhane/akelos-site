@@ -7,7 +7,13 @@ export default function Nav() {
       id="mainNav"
     >
       <div className="container px-4 px-lg-5">
-        <a className="navbar-brand" href="#page-top">
+        <a
+          className="navbar-brand"
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+          href="#page-top"
+        >
           <img src="img/logo.png" alt="Akelos" />
         </a>
         <button

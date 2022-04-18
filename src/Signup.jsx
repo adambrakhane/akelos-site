@@ -129,7 +129,7 @@ export default function Signup() {
               <div className="row">
                 <div className="col">
                   <ReCaptchaV2
-                    sitekey="6LckrH8fAAAAADmqeeiQycpWfhMrhKxjdgHm262_"
+                    sitekey={RECAPTCHA_SITE_KEY}
                     onChange={handleToken}
                     size="normal"
                     className="g-recaptcha"

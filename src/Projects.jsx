@@ -77,7 +77,7 @@ export default function Projects() {
         </Project>
         <Project
           align="right"
-          title="What is Contextual Engineering?"
+          title="How is Akelos different?"
           img="img/road.jpg"
         >
           Akelos is a 501(c)(3) non-profit that combats the notion of a
